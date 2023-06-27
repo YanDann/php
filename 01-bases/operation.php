@@ -14,7 +14,7 @@
 
     $calcul1 = $var1 + $var2 + $var3;
     $calcul2 = $var1 * ($var2 - $var3);
-    $calcul3 = ($var3 + $var2) / $var1;
+    $calcul3 = round(($var3 + $var2) / $var1 , 2);
 
     $lessTwenty = "";
 
@@ -25,9 +25,9 @@
 
     <h1>Les opérations : </h1>
 
-    <p><?= $var1 . " + " . $var2 . " + " . $var3 . " = " . $calcul1 ?></p>
-    <p><?= $var1 . " x (" . $var2 . " - " . $var3 . ") = " . $calcul2 ?></p>
-    <p><?= "(" . $var3 . " + " . $var2 . ") / " . $var1 . " = " . $calcul3 ?></p>
+    <p><?= $var1 . " + " . $var2 . " + " . $var3 . " = " . $calcul1; ?></p>
+    <p><?= $var1 . " x (" . $var2 . " - " . $var3 . ") = " . $calcul2; ?></p>
+    <p><?= "(" . $var3 . " + " . $var2 . ") / " . $var1 . " = " . $calcul3; ?></p>
 
     <h2><?= $lessTwenty ?></h2>
 </body>
