@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="utf-8">
-    <title>Exercices 001</title>
+    <title>Exercice 001</title>
 </head>
 <body>
     <?php

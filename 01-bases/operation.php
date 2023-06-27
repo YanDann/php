@@ -23,6 +23,8 @@
     }
     ?>
 
+    <h1>Les opérations : </h1>
+
     <p><?= $var1 . " + " . $var2 . " + " . $var3 . " = " . $calcul1 ?></p>
     <p><?= $var1 . " x (" . $var2 . " - " . $var3 . ") = " . $calcul2 ?></p>
     <p><?= "(" . $var3 . " + " . $var2 . ") / " . $var1 . " = " . $calcul3 ?></p>
