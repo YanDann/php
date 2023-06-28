@@ -9,12 +9,25 @@
 
 <body>
     <main>
-        <?php for ($i = 0; $i <= 10; $i++) { ?>
-            <span class="column"><?= 0; ?></span>
-            <?php for ($j = 1; $j <= 10; $j++) { ?>
-                <span class="column"><?= $i * $j; ?></span>
-            <?php } ?> <br>
-        <?php } ?>
+        <div class="x">X</div>
+        <div class="horizontal">
+            <?php for ($i = 0; $i <= 10; $i++) { ?>
+                <span><?= $i; ?></span>
+            <?php } ?>
+        </div>
+        <div class="vertical">
+            <?php for ($i = 0; $i <= 10; $i++) { ?>
+                <span><?= $i; ?></span><br>
+            <?php } ?>
+        </div>
+        <div class="content">
+            <?php for ($i = 0; $i <= 10; $i++) { ?>
+                <span class="column"><?= 0; ?></span>
+                <?php for ($j = 1; $j <= 10; $j++) { ?>
+                    <span class="column"><?= $i * $j; ?></span>
+                <?php } ?> <br>
+            <?php } ?>
+        </div>
     </main>
 </body>
 

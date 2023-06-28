@@ -1,11 +1,61 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+body {
+    width: 1000px;
+}
+
+main {
+    margin: auto;
+}
+
+.x {
+    position: absolute;
+    top: 7px;
+    left: 10px;
+}
+
+.vertical {
+    margin-top: -1px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    width: 30px;
+}
+
+.vertical span {
+    text-align: center;
+    height: 12px;
+}
+
+.horizontal {
+    margin-left: 29px;
+    border: 1px solid black;
+    width: 380px;
+}
+
+.horizontal span {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+}
+
+.content {
+    position: absolute;
+    top: 11px;
+    left: 9px;
+    margin: 20px;
+    border: 1px solid black;
+    width: 380px;
 }
 
 .column {
     display: inline-block;
     width: 30px;
     height: 30px;
+    text-align: center;
 }
