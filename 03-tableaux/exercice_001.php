@@ -49,7 +49,7 @@
     <?php foreach ($population as $pop) { ?>
         <?php $poptotal += $pop ?>
     <?php } ?>
-    <?= $poptotal; ?>
+    <?= $poptotal - $population['Mexique']; ?>
 
     <h2>1. Afficher la liste de tous les élèves avec leur notes</h2>
 
@@ -74,14 +74,16 @@
     ];
     ?>
 
-    <?php foreach ($eleves as $eleve) { ?>
-        <ul>
-            <?= $eleve['nom'] . ' à eu '; ?>
-            <?php foreach ($eleve['notes'] as $note) { ?>
-                <?= $note; ?>
-            <?php } ?>
-        </ul>
-    <?php } ?>
+    <div>
+        <?php foreach ($eleves as $eleve) { ?>
+            <ul>
+                <?= $eleve['nom'] . ' à eu '; ?>
+                <?php foreach ($eleve['notes'] as $note) { ?>
+                    <?= $note; ?>
+                <?php } ?>
+            </ul>
+        <?php } ?>
+    </div>
 
     <h2>2. Calculer la moyenne de Jean. On part de $eleves[2]['notes']</h2>
 
@@ -93,46 +95,51 @@
 
     <h2>3. Combien d'élèves ont la moyenne ?</h2>
 
-    <?php $eleveMoyen = [] ?>
-    <?php foreach ($eleves as $eleve) { ?>
-        <?php $moy = 0; ?>
-        <ul>
-            <?php foreach ($eleve['notes'] as $note) { ?>
-                <?php $note; ?>
-            <?php } ?>
-            <?php foreach ($eleve['notes'] as $note) { ?>
-                <?php $moy += $note; ?>
-            <?php } ?>
-            <?= (round($moy / count($eleve['notes']), 2) > 10 ? $eleveMoyen[] = $eleve['nom'] . ' a la moyenne' : ' n\'a pas la moyenne'); ?>
-        </ul>
-    <?php } ?>
-    <p>Nombre d'élèves avec la moyenne : <?= count($eleveMoyen) ?></p>
+    <div>
+        <?php $eleveMoyen = [] ?>
+        <?php foreach ($eleves as $eleve) { ?>
+            <?php $moy = 0; ?>
+            <ul>
+                <?php foreach ($eleve['notes'] as $note) { ?>
+                    <?php $note; ?>
+                <?php } ?>
+                <?php foreach ($eleve['notes'] as $note) { ?>
+                    <?php $moy += $note; ?>
+                <?php } ?>
+                <?= (round($moy / count($eleve['notes']), 2) > 10 ? $eleveMoyen[] = $eleve['nom'] . ' a la moyenne' : ' n\'a pas la moyenne'); ?>
+            </ul>
+        <?php } ?>
+        <p>Nombre d'élèves avec la moyenne : <?= count($eleveMoyen) ?></p>
+    </div>
 
     <h2>4. Quel(s) éléve(s) a(ont) la meilleure note ?</h2>
 
-    <?php $bestNote = 0; ?>
-    <?php $bestStudent = '' ?>
-    <?php foreach ($eleves as $eleve) { ?>
-        <?php foreach ($eleve['notes'] as $note) { ?>
-            <?php if ($bestNote < $note) { ?>
-                <?php $bestNote = $note; ?>
-                <?php $bestStudent = $eleve['nom'] ?>
+    <div>
+        <?php $bestNote = 0; ?>
+        <?php $bestStudent = '' ?>
+        <?php foreach ($eleves as $eleve) { ?>
+            <?php foreach ($eleve['notes'] as $note) { ?>
+                <?php if ($bestNote < $note) { ?>
+                    <?php $bestNote = $note; ?>
+                    <?php $bestStudent = $eleve['nom'] ?>
+                <?php } ?>
             <?php } ?>
         <?php } ?>
-    <?php } ?>
-    <?= $bestNote . ' a été obtenu par ' . $bestStudent; ?>
-
+        <?= $bestNote . ' a été obtenu par ' . $bestStudent; ?>
+    </div>
     <h2>5. Qui a eu au moins un 20 ?</h2>
 
-    <?php $perfect = false; ?>
-    <?php foreach ($eleves as $eleve) { ?>
-        <?php foreach ($eleve['notes'] as $note) { ?>
-            <?php if ($note == 20) { ?>
-                <?php $perfect = true; ?>
+    <div>
+        <?php $perfect = false; ?>
+        <?php foreach ($eleves as $eleve) { ?>
+            <?php foreach ($eleve['notes'] as $note) { ?>
+                <?php if ($note == 20) { ?>
+                    <?php $perfect = true; ?>
+                <?php } ?>
             <?php } ?>
         <?php } ?>
-    <?php } ?>
-    <?= $perfect == true ? 'Quelqu\'un a eu 20' : 'Personne n\' eu 20' ?>
+        <?= $perfect == true ? 'Quelqu\'un a eu 20' : 'Personne n\' eu 20' ?>
+    </div>
 </body>
 
 </html>
