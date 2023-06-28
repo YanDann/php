@@ -30,8 +30,8 @@
     <h2>Ecrire le code permettant de trouver le PGCD de 2 nombres</h2>
 
     <?php
-    $a = 7803;
-    $b = 6540;
+    $a = 68;
+    $b = 265;
 
     $firstnumber = $a;
     $secondnumber = $b;
