@@ -14,8 +14,8 @@ main {
 
 .x {
     position: absolute;
-    top: 7px;
-    left: 10px;
+    top: 6px;
+    left: 12px;
 }
 
 .vertical {
@@ -29,6 +29,11 @@ main {
 .vertical span {
     text-align: center;
     height: 12px;
+    padding: 5px;
+}
+
+.bold {
+    font-weight: 700;
 }
 
 .horizontal {
@@ -42,6 +47,7 @@ main {
     width: 30px;
     height: 30px;
     text-align: center;
+    padding: 5px;
 }
 
 .content {
@@ -58,4 +64,5 @@ main {
     width: 30px;
     height: 30px;
     text-align: center;
+    padding: 5px;
 }
