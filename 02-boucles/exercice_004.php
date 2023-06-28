@@ -10,7 +10,7 @@
 <body>
     <main>
         <?php for ($i = 0; $i <= 10; $i++) { ?>
-            <span><?= 0; ?></span>
+            <span class="column"><?= 0; ?></span>
             <?php for ($j = 1; $j <= 10; $j++) { ?>
                 <span class="column"><?= $i * $j; ?></span>
             <?php } ?> <br>
