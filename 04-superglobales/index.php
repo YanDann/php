@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ssuperglobales</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -17,6 +18,8 @@
     // L'opérateur Null coalesce permet de vérifier si la valeur existe
     $name = $_GET['name'] ?? "aventurier";
     $age = $_GET['age'] ?? null;
+    $age = (int) $age; // '40' devient 40 et toto devient 0 (caster)
+    var_dump($age);
     ?>
 
     <a href="index.php">Sans rien</a>
@@ -29,17 +32,46 @@
         <p>Tu as <?= $age ?> ans.</p>
     <?php } ?>
 
+    <h2>Formulaire en GET</h2>
     <form action="" method="get">
-        <input type="text" name="name" value=<?= $name; ?>>
-        <select name="age">
-            <?php for ($i = 18; $i <= 120; $i++) { ?>
-                <option <?= $i == $age ? 'selected' : '' ?> value="<?= $i ?>">
-                    <?= $i . " ans"; ?>
-                </option>;
-            <?php } ?>
-        </select>
+        <div class="section">
+            <label for="nameid">Nom</label>
+            <input type="text" name="name" id="nameid" value=<?= $name; ?>>
+        </div>
+
+        <div class="section">
+            <label for="ageid">Age</label>
+            <select name="age" id="ageid">
+                <?php for ($i = 18; $i <= 120; $i++) { ?>
+                    <option <?= $i == $age ? 'selected' : '' ?> value="<?= $i ?>">
+                        <?= $i . " ans"; ?>
+                    </option>;
+                <?php } ?>
+            </select>
+        </div>
+
         <button>Envoyer</button>
     </form>
+
+    <?php
+        // Avec $_POST, les données sont "cachées" dans la requête
+        var_dump($_POST);
+        $password = $_POST['password'] ?? null;
+        if ($password) {
+            echo "<p>Votre mot de passe : $password</p>";
+        }
+    ?>
+
+    <h2>Formulaire en POST</h2>
+    <form action="" method="post">
+        <div class="section">
+            <label for="passwordid">Mot de passe</label>
+            <input type="password" name="password" id="passwordid">
+        </div>
+
+        <button>Envoyer</button>
+    </form>
+
 </body>
 
 </html>
