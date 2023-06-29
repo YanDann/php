@@ -11,7 +11,7 @@
 
 <body>
     <?php
-    $iteration = 10;
+    $iteration = $_GET['iteration'] ?? 10;
 
     $tabSentence = [
         "Je dois répéter cette phrase $iteration fois !",
