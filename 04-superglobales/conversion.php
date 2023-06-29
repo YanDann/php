@@ -1,53 +1,58 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Converson euro bitcoin</title>
+    <title>Bitcoin</title>
+    <link rel="stylesheet" href="bitcoin.css">
 </head>
-
 <body>
-    <form action="" method="post">
-        <?php
-        $euro = $_POST['eurovalue']  ?? null;
-        ?>
+    <?php
+        // On va récupèrer les variables
+        $amount = $_POST['amount'] ?? null;
+        $currency = $_POST['currency'] ?? 'euro';
 
-        <div>
-            <label for="euro">Valeur</label>
-            <input type="number" name="eurovalue" id="euro" value=<?= $euro ?>>
-        </div>
+        isset($_POST['amount']); // => Vérifie que amount est dans le tableau
+        empty($_POST); // => Vérifie si le tableau est vide (ou false ou 0 ou '')
 
-        <div>
-            <label for="operatorid">Conversion</label>
-            <select name="operator" id="operatorid">
-                <?php for ($i = 0; $i <= 1; $i++) { ?>
-                    <option value="<?= $i ?>">
-                        <?= $i; ?>
-                    </option>
-                <?php } ?>
-            </select>
-        </div>
+        if (!empty($_POST)) {
+            $rate = 27836.91;
 
-        <button>Convertir</button>
-
-        <?php
-        $operator = $_POST['operator'];
-        $bitcoin = 27_826.59;
-
-        switch ($operator) {
-            case 0:
-                $calcul = $euro * $bitcoin;
-                break;
-
-            case 1:
-                $calcul = $euro / $bitcoin;
-                break;
+            if ($currency === 'euro') {
+                $from = 'euros';
+                $to = 'bitcoins';
+                $result = $amount / $rate;
+            } else {
+                $from = 'bitcoins';
+                $to = 'euros';
+                $result = $amount * $rate;
+            }
         }
-        ?>
+    ?>
 
-        <p>Résultat conversion : <?= $calcul ?></p>
-    </form>
+    <div class="container">
+        <h1>Bitcoin</h1>
+
+        <?php if (isset($result)) { ?>
+            <h2><?= "$amount $from"; ?> valent <?= "$result $to"; ?>.</h2>
+        <?php } ?>
+
+        <form action="" method="post">
+            <div class="section">
+                <label for="amount">Montant</label>
+                <input type="text" name="amount" id="amount" value="<?= $amount; ?>">
+            </div>
+
+            <div class="section">
+                <label for="currency">Devise</label>
+                <select name="currency" id="currency">
+                    <option <?= $currency === 'euro' ? 'selected' : ''; ?> value="euro">Euros vers bitcoins</option>
+                    <option <?= $currency === 'btc' ? 'selected' : ''; ?> value="btc">Bitcoins vers euros</option>
+                </select>
+            </div>
+
+            <button>Convertir</button>
+        </form>
+    </div>
 </body>
-
 </html>
