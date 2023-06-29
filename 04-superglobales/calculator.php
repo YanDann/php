@@ -41,7 +41,7 @@
         <button>Calculer</button>
 
         <?php
-        $operator = $_GET['operator'];
+        $operator = $_GET['operator'] ?? 0;
 
         switch ($operator) {
             case 0:
