@@ -13,12 +13,12 @@ function airCircle(int $rayon){
 }
 
 function priceTTC(int $price, int $taux) {
-    return $price + ($price * ($taux / 100)) . "€";
+    return $price + (1+ $taux / 100) . "€";
 }
 
 function priceTTCtoHT(int $price, int $taux, bool $convert) {
 
-    return $convert == true ? "Prix TTC => " . $price + ($price * ($taux / 100)) . "€" : "Prix HT => " . $price . "€";
+    return $convert == true ? "Prix TTC => " . $price + (1 + $taux / 100) . "€" : "Prix HT => " . $price . "€";
 
 }
 

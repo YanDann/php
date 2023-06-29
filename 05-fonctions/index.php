@@ -25,7 +25,7 @@
     <p>Timestamp: <?= time() ?></p>
     <p>Date: <?= date('d/m/yy H:i') ?></p>
     <p>Timestamp précis: <?= strtotime('20 march 1994') ?></p>
-    <p>Date précise: <?= date(('1 d/m'), strtotime('+ 2 days')); ?></p>
+    <p>Date précise: <?= $date = date(('1 d/m'), strtotime('+ 2 days')); ?></p>
 
 </body>
 </html>

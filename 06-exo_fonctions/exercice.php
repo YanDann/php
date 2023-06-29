@@ -27,6 +27,13 @@
     <h2>Ajouter un 3ème paramètre à cette fonction permettant de l'utiliser dans les 2 sens (HT vers TTC ou TTC vers HT)</h2>
     <p><?= priceTTCtoHT(25, 22, true) ?></p>
 
+    <h2>Nous cherchons à afficher la date du jour au format "Tuesday 16 february 2021, il est 10h51 et 12 secondes". Cherchez sur Google la fonction PHP permettant de faire cela. Comment choisir le format de la date ?</h2>
+    <p><?= date('d/m/yy'); ?>, il est <?= date('H'); ?>H<?= date('i'); ?> et <?= date('s') ?> secondes</p>
+
+    <h2>Nous voulons récupérer le jour qu'il sera dans 10 jours exactement. Pensez que strtotime renvoie un timestamp.</h2>
+    <?php $date = date('d/m'); ?>
+    <p>Dans 10 jours nous serons le <?= $date, strtotime("+10 days"); ?></p>
+
 </body>
 
 </html>
