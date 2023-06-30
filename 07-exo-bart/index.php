@@ -23,8 +23,25 @@
     ];
 
     $test = rand(0, (count($tabSentence) - 1));
-    $sentence = $tabSentence[$test];
+    $sentence = $_GET['sentence'] ?? $tabSentence[$test];
     ?>
+    <header>
+        <form action="" method="get">
+            <label for="asksentence">Quelle phrase doit recopier Bart ?</label>
+            <br>
+            <input type="text" name="sentence" id="asksentence" value="<?= $sentence ?>">
+            <br>
+            <label for="askiteration">Combien de fois doit-il recopier la phrase ?</label>
+            <br>
+            <select name="iteration" id="askiteration">
+                <?php for ($i = 0; $i <= 100; $i++) { ?>
+                    <option <?= $iteration == $i ? 'selected' : '' ?> value="<?= $i ?>">
+                        <?= $i ?>
+                    </option>
+                <?php } ?>
+            </select>
+        </form>
+    </header>
 
     <main>
         <?php
