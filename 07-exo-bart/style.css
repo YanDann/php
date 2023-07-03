@@ -20,7 +20,7 @@ main p {
     color: white;
     padding: 2px 0;
     font-size: 125%;
-    font-family: 'Permanent Marker', cursive;
+    font-family: 'Permanent Marker', 'cursive';
 }
 
 header  {

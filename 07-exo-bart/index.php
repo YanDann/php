@@ -14,17 +14,17 @@
     $iteration = $_GET['iteration'] ?? 10;
 
     $tabSentence = [
-        "Je dois répéter cette phrase $iteration fois !",
-        "Recopier $iteration fois : je ne dois pas skater sur la voiture de Seymour",
-        "Vive le PhP ! $iteration fois !!",
-        "Je dois faire mes dévoirs, à recopier $iteration fois...",
-        "Ne pas oublier de mettre son révéil le matin, sinon j'aurais $iteration punitions !",
-        "Je prefererais gagner $iteration fois au loto que de recopier cette phrase $iteration fois...",
+        "Je dois répéter cette phrase..",
+        "Recopier : je ne dois pas skater sur la voiture de Seymour",
+        "Vive le PhP !!",
+        "Je dois faire mes dévoirs, à recopier...",
+        "Ne pas oublier de mettre son révéil le matin, sinon j'aurais une punitions !",
     ];
 
     $test = rand(0, (count($tabSentence) - 1));
     $sentence = $_GET['sentence'] ?? $tabSentence[$test];
     ?>
+
     <header>
         <form action="" method="get">
             <label for="asksentence">Quelle phrase doit recopier Bart ?</label>
