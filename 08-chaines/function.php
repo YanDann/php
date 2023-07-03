@@ -7,7 +7,7 @@ function acronyme(string $string): string{
         $result[] = substr($letter, 0, 1);
     }
     
-    return implode($result);
+    return strtoupper(implode($result));
 }
 
 function conjug(string $string): string{
