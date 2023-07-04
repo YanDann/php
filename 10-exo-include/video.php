@@ -1,15 +1,16 @@
-<?php 
+<?php
 // Je verifie si l'id est présent
 
 $id = $_GET['id'] ?? null;
 
-if (! $id) {
-  require '404.php';
-  die();  
+if (!$id) {
+    http_response_code(404);
+    require '404.php';
+    die();
 }
 
 $title = 'video';
-require 'partials/header.php'; 
+require 'partials/header.php';
 ?>
 
 <main class="flex-shrink-0">
