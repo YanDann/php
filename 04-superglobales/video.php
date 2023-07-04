@@ -8,13 +8,13 @@
 </head>
 
 <body>
-    <?php 
+    <?php
     $videoId = $_GET['id'] ?? null;
     $src = "";
     ?>
 
     <form action="" method="get">
-        <?php 
+        <?php
         switch ($videoId) {
             case 1:
                 $src = "https://www.youtube.com/embed/pitkROBT85o";

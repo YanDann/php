@@ -8,6 +8,10 @@ function pageName(){
     $name = strrchr($uri, '/'); // /contact.php
     $name = substr($name, 1, -4); // contact
 
+    if (empty($name)) {
+        $name = 'index';
+    }
+
     return $name;
 }
 

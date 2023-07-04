@@ -1,4 +1,7 @@
-<?php require 'partials/header.php'; ?>
+<?php 
+$title = 'index';
+require 'partials/header.php'; 
+?>
 
     <!-- Begin page content -->
     <main class="flex-shrink-0">

@@ -1,5 +1,5 @@
 <?php 
-$title = 'Contact';
+$title = 'contact';
 require 'partials/header.php'; 
 ?>
 

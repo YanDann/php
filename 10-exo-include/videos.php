@@ -1,4 +1,7 @@
-<?php require 'partials/header.php'; ?>
+<?php 
+$title = 'videos';
+require 'partials/header.php'; 
+?>
 
 <main class="flex-shrink-0">
     <div class="container">
