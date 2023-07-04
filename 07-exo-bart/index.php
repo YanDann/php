@@ -35,7 +35,7 @@
             <br>
             <select name="iteration" id="askiteration">
                 <?php for ($i = 0; $i <= 100; $i++) { ?>
-                    <option <?= $iteration == $i ? 'selected' : '' ?> value="<?= $i ?>">
+                    <option>
                         <?= $i ?>
                     </option>
                 <?php } ?>

@@ -1,15 +1,101 @@
-<?php 
+<?php
 $title = 'contact';
-require 'partials/header.php'; 
+require 'partials/header.php';
+
+$email = $_POST['email'] ?? null;
+$message = $_POST['message'] ?? null;
+$carracteres = 15;
+$civilite = $_POST['civilite'] ?? 'Mr';
+$errors = [];
+
+$subject = $_POST['subject'] ?? null;
+$subjectTab = [
+    'Proposition de stage',
+    'Proposition d\'emploi',
+    'Demande de projet',
+];
+
+if (!empty($_POST)) {
+    if (empty($email)) {
+        $errors[] = "L'email est obligatoire.";
+        $validEmail = 'is-invalid';
+    } else if (!validEmail($email)) {
+        $errors[] = "L'email est invalide.";
+        $validEmail = 'is-invalid';
+    }
+
+    if (!isset($subject)) {
+        $errors[] = "Vous devez choisir le sujet.";
+        $validSubject = 'is-invalid';
+    }
+
+    if (strlen($message) < $carracteres) {
+        $errors[] = "Le message doit faire au moins $carracteres carractères";
+        $validMessage = 'is-invalid';
+    }
+
+    if (empty($errors)) {
+        $success = "Bonjour $civilite, votre email est $email et votre $subject à bien été envoyé.";
+    }
+}
 ?>
 
-    <!-- Begin page content -->
-    <main class="flex-shrink-0">
-        <div class="container">
-            <h1 class="mt-5">Contact</h1>
-            <p class="lead">Un formulaire de contact prendra bientot place sur cette page <code class="small">padding-top: 60px;</code> on the <code class="small">main &gt; .container</code>.</p>
-            <p>Back to <a href="/docs/5.3/examples/sticky-footer/">the default sticky footer</a> minus the navbar.</p>
+<main class="flex-shrink-0">
+    <div class="container">
+        <h1 class="mt-5 mb-5">Contact</h1>
+
+        <?php if (isset($success)) { ?>
+            <div class="alert alert-success">
+                <?= $success ?>
+            </div>
+        <?php } ?>
+
+        <?php if (!empty($errors)) { ?>
+        <div class="alert alert-danger">
+            <?php foreach ($errors as $error) { ?>
+                <p class="m-0"><?= $error ?></p>
+            <?php } ?>
         </div>
-    </main>
+    <?php } ?>
+
+        <form method="post">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control <?= $validEmail ?>" id="email" name="email" placeholder="name@example.com" value="<?= $email ?>">
+                <label for="email">Email</label>
+            </div>
+
+            <div class="mb-3">
+                <div class="form-floating mb-3">
+                    <select name="subject" id="subject" class="form-select <?= $validSubject ?>">
+                        <option selected disabled>Choisissez un sujet</option>
+                        <?php for ($i = 0; $i < count($subjectTab); $i++) { ?>
+                            <option <?= $subject == $subjectTab[$i] ? 'selected' : '' ?> value="<?= $subjectTab[$i] ?>">
+                                <?= $subjectTab[$i]; ?>
+                            </option>
+                        <?php } ?>
+                    </select>
+                    <label for="subject">Sujet</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <textarea class="form-control <?= $validMessage ?>" id="message" name="message" style="height: 300px" placeholder="Ecrivez votre message ici"><?= $message; ?></textarea>
+                    <label for="message">Message</label>
+                </div>
+
+                <div>
+                    <label for="civilite" class="form-label">Civilité</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="civilite" id="mr" value="Mr" <?= checked('Mr', $civilite); ?>>
+                        <label class="form-check-label" for="mr">Monsieur</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="civilite" id="mme" value="Mme" <?= checked('Mme', $civilite); ?>>
+                        <label class="form-check-label" for="mme">Madame</label>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
 
 <?php require 'partials/footer.php'; ?>

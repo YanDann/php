@@ -15,4 +15,17 @@ function pageName(){
     return $name;
 }
 
+/**
+ * Permet de valider un email
+ */
+function validEmail(string $email): bool{
+    return filter_var($email, FILTER_VALIDATE_EMAIL);
+}
+
+/**
+ * Permet d'afficher cehcked si une valeur est dans un tableau
+ */
+function checked(string $value, string $valueToCompare): string{
+    return $value === $valueToCompare ? 'checked' : '';
+}
 ?>
