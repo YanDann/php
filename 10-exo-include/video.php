@@ -1,4 +1,13 @@
 <?php 
+// Je verifie si l'id est présent
+
+$id = $_GET['id'] ?? null;
+
+if (! $id) {
+  require '404.php';
+  die();  
+}
+
 $title = 'video';
 require 'partials/header.php'; 
 ?>
