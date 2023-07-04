@@ -29,6 +29,9 @@ function checked(string $value, string $valueToCompare): string{
     return $value === $valueToCompare ? 'checked' : '';
 }
 
+/**
+ * Permet d'afficher l'erreur rencontrée
+ */
 function showErrors(string $value, array $errors) {
     if (!empty($errors)) { ?>
         <div class="alert alert-danger">

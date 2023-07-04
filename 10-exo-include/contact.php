@@ -3,6 +3,10 @@ $title = 'contact';
 require 'partials/header.php';
 
 $email = $_POST['email'] ?? null;
+if (isset($email)){
+    $name = strstr($email, '@', true);
+}
+
 $message = $_POST['message'] ?? null;
 $carracteres = 15;
 $civilite = $_POST['civilite'] ?? 'Mr';
@@ -35,7 +39,7 @@ if (!empty($_POST)) {
     }
 
     if (empty($errors)) {
-        $success = "Bonjour $civilite, votre email est $email et votre $subject à bien été envoyé.";
+        $success = "Bonjour $civilite $name, votre ".strtolower($subject)." a bien été envoyée.";
     }
 }
 ?>
@@ -74,7 +78,7 @@ if (!empty($_POST)) {
                 <?php showErrors('subject', $errors) ?>
 
                 <div class="form-floating mb-3">
-                    <textarea class="form-control <?= $validMessage ?>" id="message" name="message" style="height: 300px" placeholder="Ecrivez votre message ici"><?= $message; ?></textarea>
+                    <textarea class="form-control <?= $validMessage ?>" id="message" name="message" style="height: 250px" placeholder="Ecrivez votre message ici"><?= $message; ?></textarea>
                     <label for="message">Message</label>
                 </div>
 
@@ -92,6 +96,7 @@ if (!empty($_POST)) {
                     </div>
                 </div>
             </div>
+            <button type="submit" class="btn btn-secondary">Envoyer</button>
         </form>
     </div>
 </main>
