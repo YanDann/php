@@ -50,24 +50,24 @@ if (!empty($_POST)) {
 
         <?php if (isset($success)) { ?>
             <div class="alert alert-success">
-                <?= $success ?>
+                <?= $success; ?>
             </div>
         <?php } ?>
 
         <form method="post">
             <div class="form-floating mb-3">
-                <input type="text" class="form-control <?= $validEmail ?>" id="email" name="email" placeholder="name@example.com" value="<?= $email ?>">
+                <input type="text" class="form-control <?= $validEmail; ?>" id="email" name="email" placeholder="name@example.com" value="<?= $email; ?>">
                 <label for="email">Email</label>
             </div>
 
-            <?php showErrors('email', $errors) ?>
+            <?php showErrors('email', $errors); ?>
 
             <div class="mb-3">
                 <div class="form-floating mb-3">
-                    <select name="subject" id="subject" class="form-select <?= $validSubject ?>">
+                    <select name="subject" id="subject" class="form-select <?= $validSubject; ?>">
                         <option selected disabled>Choisissez un sujet</option>
                         <?php for ($i = 0; $i < count($subjectTab); $i++) { ?>
-                            <option <?= $subject == $subjectTab[$i] ? 'selected' : '' ?> value="<?= $subjectTab[$i] ?>">
+                            <option <?= $subject == $subjectTab[$i] ? 'selected' : '' ?> value="<?= $subjectTab[$i]; ?>">
                                 <?= $subjectTab[$i]; ?>
                             </option>
                         <?php } ?>
@@ -75,14 +75,14 @@ if (!empty($_POST)) {
                     <label for="subject">Sujet</label>
                 </div>
 
-                <?php showErrors('subject', $errors) ?>
+                <?php showErrors('subject', $errors); ?>
 
                 <div class="form-floating mb-3">
-                    <textarea class="form-control <?= $validMessage ?>" id="message" name="message" style="height: 250px" placeholder="Ecrivez votre message ici"><?= $message; ?></textarea>
+                    <textarea class="form-control <?= $validMessage; ?>" id="message" name="message" style="height: 250px" placeholder="Ecrivez votre message ici"><?= $message; ?></textarea>
                     <label for="message">Message</label>
                 </div>
 
-                <?php showErrors('message', $errors) ?>
+                <?php showErrors('message', $errors); ?>
 
                 <div>
                     <label for="civilite" class="form-label">Civilité</label>
