@@ -17,20 +17,20 @@ $subjectTab = [
 
 if (!empty($_POST)) {
     if (empty($email)) {
-        $errors[] = "L'email est obligatoire.";
+        $errors['email'] = "L'email est obligatoire.";
         $validEmail = 'is-invalid';
     } else if (!validEmail($email)) {
-        $errors[] = "L'email est invalide.";
+        $errors['email'] = "L'email est invalide.";
         $validEmail = 'is-invalid';
     }
 
     if (!isset($subject)) {
-        $errors[] = "Vous devez choisir le sujet.";
+        $errors['subject'] = "Vous devez choisir le sujet.";
         $validSubject = 'is-invalid';
     }
 
     if (strlen($message) < $carracteres) {
-        $errors[] = "Le message doit faire au moins $carracteres carractères";
+        $errors['message'] = "Le message doit faire au moins $carracteres carractères";
         $validMessage = 'is-invalid';
     }
 
@@ -50,19 +50,13 @@ if (!empty($_POST)) {
             </div>
         <?php } ?>
 
-        <?php if (!empty($errors)) { ?>
-        <div class="alert alert-danger">
-            <?php foreach ($errors as $error) { ?>
-                <p class="m-0"><?= $error ?></p>
-            <?php } ?>
-        </div>
-    <?php } ?>
-
         <form method="post">
             <div class="form-floating mb-3">
                 <input type="text" class="form-control <?= $validEmail ?>" id="email" name="email" placeholder="name@example.com" value="<?= $email ?>">
                 <label for="email">Email</label>
             </div>
+
+            <?php showErrors('email', $errors) ?>
 
             <div class="mb-3">
                 <div class="form-floating mb-3">
@@ -77,10 +71,14 @@ if (!empty($_POST)) {
                     <label for="subject">Sujet</label>
                 </div>
 
+                <?php showErrors('subject', $errors) ?>
+
                 <div class="form-floating mb-3">
                     <textarea class="form-control <?= $validMessage ?>" id="message" name="message" style="height: 300px" placeholder="Ecrivez votre message ici"><?= $message; ?></textarea>
                     <label for="message">Message</label>
                 </div>
+
+                <?php showErrors('message', $errors) ?>
 
                 <div>
                     <label for="civilite" class="form-label">Civilité</label>

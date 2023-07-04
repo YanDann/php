@@ -28,4 +28,12 @@ function validEmail(string $email): bool{
 function checked(string $value, string $valueToCompare): string{
     return $value === $valueToCompare ? 'checked' : '';
 }
+
+function showErrors(string $value, array $errors) {
+    if (!empty($errors)) { ?>
+        <div class="alert alert-danger">
+            <p class="m-0"><?= $errors[$value]; ?></p>
+        </div>
+    <?php } 
+}
 ?>
