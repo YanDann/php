@@ -3,6 +3,7 @@
 
 $id = $_GET['id'] ?? null;
 
+// On affiche 404 si l'id n'est pas présent
 if (!$id) {
     http_response_code(404);
     require '404.php';
