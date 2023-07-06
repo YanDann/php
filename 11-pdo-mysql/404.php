@@ -1,8 +1,9 @@
 <?php require 'partials/header.php'; ?>
 
 <?php 
+$rand = rand(1,4);
 
-$randomMovies= db()->query("SELECT * FROM movie WHERE id = ROUND(RAND()*23) + 1")->fetchAll();
+$randomMovies= db()->query('SELECT * FROM movie ORDER BY RAND() LIMIT '.$rand)->fetchAll();
 // var_dump($randomMovies);
 
 ?>

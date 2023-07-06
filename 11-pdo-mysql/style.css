@@ -59,3 +59,8 @@
 .content-404 h1 {
     font-weight: 700;
 }
+
+.containerAdd {
+    margin: 70px auto;
+    width: 650px;
+}

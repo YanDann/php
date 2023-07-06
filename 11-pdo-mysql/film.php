@@ -1,9 +1,27 @@
-<?php require 'partials/header.php';
+<?php
+// Recuperation de l'id du film de la page d'accueil
+$searchId = (int) $_GET['id'] - 1 ?? null;
+
+if ($searchId >= 23) {
+    http_response_code(404);
+    require '404.php';
+    die();
+}
+
+require 'partials/header.php';
 
 $movie = db()->query('SELECT * FROM movie')->fetchAll();
 
-// Recuperation de l'image par l'id
-$searchId = (int) $_GET['id'] - 1 ?? null;
+/**
+ * Autre méthode
+ * 
+ * $query = db()->prepare('SELECT * FROM movie WHERE id=  ?');
+ * $query->execute([$searchId]);
+ * $movie = $query->fetch();
+ * 
+ * fetch() => 1 tableau
+ * fetchAll() => 1 tableau de tableau de ligne (chaque ligne de la BDD = 1 tableau)
+ */
 
 foreach ($movie as $value => $film) {
     if ($value === $searchId) {
@@ -16,7 +34,7 @@ foreach ($movie as $value => $film) {
 }
 
 // On récupère l'id des acteurs dans les films qu'ils jouent (id_movie)
-$play = db()->query("SELECT id FROM joue_dans WHERE id_movie = ($searchId +1);")->fetchAll();
+$play = db()->query("SELECT id FROM joue_dans WHERE id_movie = ($searchId + 1);")->fetchAll();
 // On fait une jointure (liaison) entre l'id de l'acteur et l'id du film recherché
 $actorsName = db()->query("SELECT name, firstname FROM actor INNER JOIN joue_dans ON actor.id=joue_dans.id WHERE id_movie = ($searchId +1);")->fetchAll();
 
@@ -31,7 +49,6 @@ if (count($actorsName) >= 1) {
 }
 
 // var_dump($searchActorName);
-
 ?>
 
 <div class="affiche-card">

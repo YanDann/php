@@ -79,12 +79,21 @@ function formatDate(string $date, string $format = 'd/m/Y'){
     return date($format, strtotime($date));
 }
 
-function convertToHour(string $time){
+/**
+ * Permet de formater une durée brut en minutes
+ */
+function convertToHour(string $duration): string{
 
-    $hours = floor($time / 60);
-    $minutes = floor($time % 60);
-    
-    return "$hours heures $minutes minutes.";
+    $hours = floor($duration / 60);
+    $minutes = floor($duration % 60);
+
+    if ($minutes < 10 && $minutes > 1) {
+        return "$hours heures". " 0" ."$minutes minutes.";
+    } else if ($minutes < 1) {
+        return "$hours heures";
+    } else {
+        return "$hours heures $minutes minutes.";
+    }
 }
 
 function getYear(string $value): string{
@@ -92,3 +101,12 @@ function getYear(string $value): string{
 
     return "$year";
 }
+
+/**
+ * Permet d'afficher une 404
+ */
+//function show404(): void {
+//        http_response_code(404);
+//        require __DIR__.'/../404.php';
+//        die();
+//}
