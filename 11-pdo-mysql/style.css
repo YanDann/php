@@ -38,3 +38,16 @@
 .release span {
     font-weight: 700;
 }
+
+.description {
+    margin: 25px 15px;
+}
+
+.actors {
+    margin: 15px 15px;
+}
+
+.list-group {
+    width: 95%;
+    margin: auto;
+}
