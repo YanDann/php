@@ -3,7 +3,7 @@
 $movie = db()->query('SELECT * FROM movie')->fetchAll();
 
 // Recuperation de l'image par l'id
-$searchId = 3;
+$searchId = (int) $_GET['id'] - 1 ?? null;
 
 foreach ($movie as $value => $film) {
     if ($value === $searchId) {
@@ -16,7 +16,7 @@ foreach ($movie as $value => $film) {
 }
 
 // On récupère l'id des acteurs dans les films qu'ils jouent (id_movie)
-$play = db()->query("SELECT id FROM joue_dans WHERE id_movie = ($searchId +1);")->fetchAll();
+$play = db()->query("SELECT id FROM joue_dans WHERE id_movie = ($searchId);")->fetchAll();
 // On fait une jointure (liaison) entre l'id de l'acteur et l'id du film recherché
 $actorsName = db()->query("SELECT name, firstname FROM actor INNER JOIN joue_dans ON actor.id=joue_dans.id WHERE id_movie = ($searchId +1);")->fetchAll();
 
@@ -49,7 +49,6 @@ if (count($actorsName) >= 1) {
             <?php } ?>
         </ul>
     </div>
-
 </div>
 
 

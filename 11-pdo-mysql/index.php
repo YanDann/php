@@ -9,14 +9,15 @@ $movies = db()->query('SELECT * FROM movie')->fetchAll();
 
 <div class="container">
     <div class="row row-gap-4 my-5">
-        <?php foreach ($movies as $movie) { ?>
+        <?php foreach ($movies as $movie) {
+            $idMovie = "film.php?id=" . $movie["id"]; ?>
             <div class="col-lg-3">
                 <div class="card">
                     <img src="data/uploads/<?= $movie['cover']; ?>" class="card-img-top" alt="<?= $movie['title']; ?>">
                     <div class="card-body">
                         <h5 class="card-title"><?= $movie['title']; ?></h5>
                         <p><?= formatDate($movie['released_at']); ?></p>
-                        <a href="#" class="btn btn-primary">Voir le film</a>
+                        <a href="<?= $idMovie; ?>" class="btn btn-primary">Voir le film</a>
                     </div>
                 </div>
             </div>
