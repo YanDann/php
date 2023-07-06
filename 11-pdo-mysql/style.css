@@ -50,3 +50,12 @@
     width: 95%;
     margin: auto;
 }
+
+.content-404 {
+    text-align: center;
+    margin: 150px 0;
+}
+
+.content-404 h1 {
+    font-weight: 700;
+}
