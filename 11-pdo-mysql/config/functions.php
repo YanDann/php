@@ -110,3 +110,23 @@ function getYear(string $value): string{
 //        require __DIR__.'/../404.php';
 //        die();
 //}
+
+/**
+ * Vérification de la date
+ */
+function checkDatation(string $date): bool{
+    if (($date <= 2023 && $date > 1895)) {
+        return false;
+    }
+    return true;
+}
+
+/**
+ * Verification si la durée est en minute et comprise entre 1 & 999
+ */
+function checkDuration(string $duration): bool{
+    if (($duration <= 999 && $duration >= 1)) {
+        return false;
+    }
+    return true;
+}
