@@ -2,7 +2,7 @@
 // Recuperation de l'id du film de la page d'accueil
 $searchId = (int) $_GET['id'] - 1 ?? null;
 
-if ($searchId >= 23) {
+if ($searchId > 24) {
     http_response_code(404);
     require '404.php';
     die();

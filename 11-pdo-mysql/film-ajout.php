@@ -22,8 +22,6 @@ $movie = [
     'category' => $category,
 ];
 
-var_dump($movie);
-
 $carracteres = 5;
 $errors = [];
 
@@ -36,26 +34,24 @@ if (!empty($_POST)) {
         $errors['release_at'] = "La date n'est pas bonne.";
         $valideDate = "is-invalid";
     }
-
     if (strlen($comment) < $carracteres) {
         $errors['comment'] = "Il doit y avoir au moins 5 carractères.";
         $validComment = "is-invalid";
     }
-
     if (checkDuration($duration)) {
         $errors['duration'] = "La durée n'est pas bonne, elle doit être comprise entre 1 & 999.";
         $valideDuration = "is-invalid";
     }
-
     if (!isset($category)){
         $errors['category'] = "Vous devez choisir une catégorie.";
         $valideCategory = "is-invalid";
     }
+    if (empty($errors)) {
+        $success = $movie;
+        $query = db()->prepare('INSERT INTO movie (title, released_at, description, duration, cover, id_category) VALUES '.$success['title'].','.$success['released_at'].','.$success['comment'].','.$success['duration'].','.$success['cover'].','.$success['category']);
+    }
 }
-
-
-var_dump($errors);
-
+var_dump($success);
 ?>
 
 <div class="containerAdd">
@@ -71,7 +67,7 @@ var_dump($errors);
 
         <div class="mb-3">
             <label for="description">Comments</label>
-            <div class="form-floating">
+            <div>
                 <textarea class="form-control <?= $validComment; ?>" name="description" id="description" style="height: 100px"><?= $comment; ?></textarea>
             </div>
         </div>
