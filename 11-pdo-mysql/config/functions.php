@@ -3,7 +3,7 @@
 /**
  * Permet de se connecter à la BDD
  */
-function db(): PDO {
+function db(): PDO{
     $db = new PDO('mysql:host=localhost;dbname=movies', 'root', '');
 
     return $db;
@@ -12,7 +12,7 @@ function db(): PDO {
 /**
  * Transformer un CSV en tableau PHP
  */
-function convertCsvToArray(string $file): array {
+function convertCsvToArray(string $file): array{
     $file = fopen($file, 'r');
 
     $data = [];
@@ -56,8 +56,8 @@ function validEmail(string $email): bool{
  * ['html', 'php'] => valide
  */
 function validArray(array $data, array $valid): bool{
-    foreach ($data as $item){
-        if (!in_array($item, $valid)){
+    foreach ($data as $item) {
+        if (!in_array($item, $valid)) {
             return false;
         }
     }
@@ -77,4 +77,18 @@ function checked(string $value, array $array): string{
 
 function formatDate(string $date, string $format = 'd/m/Y'){
     return date($format, strtotime($date));
+}
+
+function convertToHour(string $time){
+
+    $hours = floor($time / 60);
+    $minutes = floor($time % 60);
+    
+    return "$hours heures $minutes minutes.";
+}
+
+function getYear(string $value): string{
+    $year = strstr($value, '-', true);
+
+    return "$year";
 }
