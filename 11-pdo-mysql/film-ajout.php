@@ -48,7 +48,15 @@ if (!empty($_POST)) {
     }
     if (empty($errors)) {
         $success = $movie;
-        $query = db()->prepare('INSERT INTO movie (title, released_at, description, duration, cover, id_category) VALUES '.$success['title'].','.$success['released_at'].','.$success['comment'].','.$success['duration'].','.$success['cover'].','.$success['category']);
+        $query = db()->prepare('INSERT INTO movie (title, released_at, description, duration, cover, id_category) VALUES (:title, :released_at, :description, :duration, :cover, :id_category)');
+        $query->bindParam(':title', $movie['title']);
+        $query->bindParam(':released_at', $movie['released_at']);
+        $query->bindParam(':description', $movie['comment']);
+        $query->bindParam(':duration', $movie['duration']);
+        $query->bindParam(':cover', $movie['cover']);
+        $query->bindParam(':id_category', $movie['category']);
+        var_dump($query);
+        $query->execute();
     }
 }
 var_dump($success);
@@ -86,7 +94,7 @@ var_dump($success);
             <select class="form-select <?= $valideCategory; ?>" name="category" id="category" aria-label="Default select example">
                 <option selected disabled>Choisissez une categorie</option>
                 <?php for ($i = 0; $i < count($cat); $i++) { ?>
-                    <option <?= $category == $cat[$i]['name'] ? 'selected' : '' ?> value="<?= $cat[$i]['name']; ?>">
+                    <option <?= $category == $cat[$i]['id'] ? 'selected' : '' ?> value="<?= $cat[$i]['id']; ?>">
                         <?= $cat[$i]['name']; ?>
                     </option>
                 <?php } ?>
