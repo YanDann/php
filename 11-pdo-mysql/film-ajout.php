@@ -9,7 +9,7 @@ $title = $_POST['title'] ?? null;
 $release = $_POST['released_at'] ?? "";
 $comment = $_POST['description'] ?? null;
 $duration = $_POST['duration'] ?? null;
-$cover = $_POST['cover'] ?? null;
+$cover = $FILES['cover'] ?? null;
 $category = $_POST['category'] ?? null;
 
 // Tableau vide à injecter
@@ -47,6 +47,13 @@ if (!empty($_POST)) {
         $valideCategory = "is-invalid";
     }
     if (empty($errors)) {
+        // @todo upload
+        $extension = strrchr($cover['name'], '.');
+        $filename = strtolower(str_replace(' ', '-', $title)).'-'.uniqid().$extension;
+        move_uploaded_file($cover['tmp_name'], __DIR__.'/data/uploads/'.$filename);
+
+        $cover = $filename;
+
         $success = $movie;
         $query = db()->prepare('INSERT INTO movie (title, released_at, description, duration, cover, id_category) VALUES (:title, :released_at, :description, :duration, :cover, :id_category)');
         $query->bindParam(':title', $movie['title']);
@@ -63,7 +70,7 @@ var_dump($success);
 ?>
 
 <div class="containerAdd">
-    <form class="container" method="post">
+    <form class="container" method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="title" class="form-label">Titre</label>
             <input type="text" class="form-control <?= $validTitle; ?>" name="title" id="title" value="<?= $title; ?>">
@@ -86,7 +93,7 @@ var_dump($success);
         </div>
         <div class="mb-3">
             <label for="cover" class="form-label">Cover</label>
-            <input type="text" class="form-control" name="cover" id="cover" value="<?= $cover; ?>">
+            <input type="file" class="form-control" name="cover" id="cover" value="<?= $cover; ?>">
         </div>
 
         <div class="mb-3">
