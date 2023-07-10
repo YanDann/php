@@ -1,0 +1,15 @@
+{
+    "name": "juju/12-poo",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Julien Michon",
+            "email": "mcn.julien@gmail.com"
+        }
+    ],
+    "require": {}
+}
