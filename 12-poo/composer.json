@@ -11,5 +11,7 @@
             "email": "mcn.julien@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "symfony/var-dumper": "^6.3"
+    }
 }
