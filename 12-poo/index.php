@@ -1,10 +1,15 @@
 <?php
-
 require 'vendor/autoload.php';
 
+$whoops = new \Whoops\Run;
+$whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+$whoops->register();
+
+use App\Book;
 use App\Calculator;
 use App\Car;
 use App\Cat;
+use App\Library;
 use App\Rectangle;
 use App\Square;
 
@@ -44,8 +49,7 @@ dump($audi, $merco);
 <p><?= $merco->klaxxon(); ?></p>
 <p><?= $audi->klaxxon(); ?></p>
 
-<?php  // ---------------------------------------------------------------  
-?>
+<?php  // ---------------------------------------------------------------  ?>
 
 <?php
 // Exo rectangle
@@ -60,7 +64,7 @@ var_dump($r2->isValid());
 // Exo carré + héritage
 $s = new Square(10);
 echo $s->perimeter();
-echo $s->isBiggerThen($r);
+dump($s->isBiggerThan($r));
 
 // Exo calculatrice
 $c = new Calculator();
@@ -69,3 +73,32 @@ $c->multiply(2)->divide(4);
 ?>
 
 <p>Le résultat de 10 - 4 * 2 / 4 est = <?= $c->result(); ?></p>
+
+<?php  // ---------------------------------------------------------------  ?>
+<?php 
+
+$b = new Book('Harry Potter à l\'école des sorciers', 250);
+echo $b->page(); // 1
+$b->nextPage(); // tourne la page (ne fait rien si on est sur la dernière page)
+echo $b->page(); // 2
+$b->close(); // ferme le livre (reviens à la page 1)
+echo $b->getName(); // Récupère le nom du livre
+echo $b->countPages(); // Récupère le nombre de pages
+
+$l = new Library();
+$l->addBook($b); // Ajoute le livre b dans un tableau
+$l->addBooks([ // Ajoute les livres suivant dans un tableau
+    new Book('Chambre des secrets', 300),
+    new Book('Prisonnier d\'Azkaban', 400),
+    new Book('Coupe de feu', 500),
+]);
+$l->books(); // Renvoie le tableau avec tous les livres
+$l->count(); // Renvoie le nombre de livre dans la bibliothèque
+echo $l->count();
+dump($l->books());
+$l->totalPages();
+echo $l->totalPages();
+$b2 = $l->getBook('Coupe de feu'); // Sélectionne le livre "Coupe de feu" s'il existe (l'objet)
+dump($b2);
+$l->findBooksByLetter('C'); // Trouve tous les livres qui commencent par cette lettre (array_filter ?)
+dump($l->findBooksByLetter('C'));

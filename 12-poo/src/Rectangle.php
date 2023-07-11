@@ -4,7 +4,7 @@ namespace App;
 
 class Rectangle{
 
-    protected int $width;
+    private int $width;
     private int $height;
 
     public function __construct(int $width, int $height)
@@ -14,17 +14,18 @@ class Rectangle{
     }
 
     public function isValid(): bool{
-        if ($this->width < 0 || $this->height < 0){
-            return false;
-        } 
-        return true;
+        return ($this->width > 0 && $this->height > 0);
     }
 
-    public function perimeter(){
+    public function perimeter(): int{
         return $this->width * 2 + $this->height * 2;
     }
 
-    public function area(){
+    public function area(): int{
         return $this->width * $this->height;
+    }
+
+    public function isBiggerThan(Rectangle $r){
+        return $this->area() > $r->area();
     }
 }
