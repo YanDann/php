@@ -44,9 +44,8 @@ class Library
 
     public function getBook(string $title)
     {
-        foreach ($this->library as $book){
-            if ($title === $book->getName())
-            {
+        foreach ($this->library as $book) {
+            if ($title === $book->getName()) {
                 return $book;
             }
         }
@@ -55,14 +54,18 @@ class Library
     public function findBooksByLetter(string $letter)
     {
         $books = new Library();
-        foreach ($this->library as $book){
-            if ($letter === substr($book->getName(), 0, 1))
-            {
+        foreach ($this->library as $book) {
+            if ($letter === substr($book->getName(), 0, 1)) {
                 $books->addBook($book);
             }
         }
         return $books;
     }
 
-    
+    public function randomBook()
+    {
+        $tab = $this->books();
+        $randomBook = array_rand($this->books(),  1);
+        return $tab[$randomBook];
+    }
 }

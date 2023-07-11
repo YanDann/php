@@ -102,3 +102,5 @@ $b2 = $l->getBook('Coupe de feu'); // Sélectionne le livre "Coupe de feu" s'il 
 dump($b2);
 $l->findBooksByLetter('C'); // Trouve tous les livres qui commencent par cette lettre (array_filter ?)
 dump($l->findBooksByLetter('C'));
+$l->randomBook(); // Sélectionne un livre aléatoire
+dump($l->randomBook());
