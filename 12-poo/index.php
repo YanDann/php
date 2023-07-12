@@ -9,6 +9,7 @@ use App\Book;
 use App\Calculator;
 use App\Car;
 use App\Cat;
+use App\DB;
 use App\Library;
 use App\Rectangle;
 use App\Square;
@@ -104,3 +105,22 @@ $l->findBooksByLetter('C'); // Trouve tous les livres qui commencent par cette l
 dump($l->findBooksByLetter('C'));
 $l->randomBook(); // Sélectionne un livre aléatoire
 dump($l->randomBook());
+?>
+
+<h2>Exercice statique DB</h2>
+
+<?php 
+
+dump(DB::select('SELECT * FROM movie'));
+dump(DB::selectOne('SELECT * FROM movie WHERE id = :id', ['id' => 2]));
+
+// DB::insert('INSERT INTO movie (title, released_at, description, duration, cover, id_category)
+//         VALUES (:title, :released_at, :description, :duration, :cover, :category)', [
+//     'title' => 'Test POO',
+//     'released_at' => date('Y-m-d'),
+//     'description' => 'Un test',
+//     'duration' => 165,
+//     'cover' => 'le-parrain.jpg',
+//     'category' => 1,
+// ]);
+?>
